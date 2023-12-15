@@ -38,7 +38,7 @@ models:
     {%- endif -%}
   +schema:  |
     {%- if target.name == "dev" -%} nhl_data
-    {%- else -%} nhl_models
+    {%- else -%} nhl_prod_models
     {%- endif -%}
   test_dbt_project:
     # Config indicated by + and applies to all files under models/example/
@@ -50,7 +50,7 @@ models:
         {%- endif -%}
       +schema:  |
         {%- if target.name == "dev" -%} nhl_data
-        {%- else -%} nhl_models
+        {%- else -%} nhl_prod_models
         {%- endif -%}
     staging:
       +materialized: view
@@ -60,5 +60,5 @@ models:
         {%- endif -%}
       +schema:  |
         {%- if target.name == "dev" -%} nhl_data
-        {%- else -%} stg_sch
+        {%- else -%} stg
         {%- endif -%}
