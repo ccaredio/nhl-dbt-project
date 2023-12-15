@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: nhl_data
+    database: dev  
+    schema: nhl_data
+    tables:
+      - name: game
+      - name: game_goalie_stats
+      - name: game_goals
+      - name: game_officials
+      - name: game_penalties
+      - name: game_teams_stats
+      - name: player_info
+      - name: team_info

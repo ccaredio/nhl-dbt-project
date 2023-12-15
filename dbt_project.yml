@@ -31,7 +31,34 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
+  +snowflake_warehouse: "TRANSFORMING"
+  +database:  |
+    {%- if target.name == "dev" -%} dev
+    {%- else -%} prod
+    {%- endif -%}
+  +schema:  |
+    {%- if target.name == "dev" -%} nhl_data
+    {%- else -%} nhl_models
+    {%- endif -%}
   test_dbt_project:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    nhl_data:
+      +snowflake_warehouse: "TRANSFORMING"
+      +database:  |
+        {%- if target.name == "dev" -%} dev
+        {%- else -%} prod
+        {%- endif -%}
+      +schema:  |
+        {%- if target.name == "dev" -%} nhl_data
+        {%- else -%} nhl_models
+        {%- endif -%}
+    staging:
       +materialized: view
+      +database: |
+        {%- if target.name == "dev" -%} dev
+        {%- else -%} prod
+        {%- endif -%}
+      +schema:  |
+        {%- if target.name == "dev" -%} nhl_data
+        {%- else -%} stg_sch
+        {%- endif -%}
