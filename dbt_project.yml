@@ -44,6 +44,6 @@ models:
       +materialized: view
       +database: |
         {%- if target.name == "dev" -%} dev
-        {%- else -%} prod
+        {%- else -%} stage
         {%- endif -%}
 
